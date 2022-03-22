@@ -19,8 +19,9 @@ class InfoMessage:
                 f'Длительность: {self.duration:.3f} ч.; '
                 f'Дистанция: {self.distance:.3f} км; '
                 f'Ср. скорость: {self.speed:.3f} км/ч; '
-                f'Потрачено ккал: {self.calories:.3f}.')
-     
+                f'Потрачено ккал: {self.calories:.3f}.'
+                )
+
 
 class Training:
     training_type = ""
@@ -146,4 +147,7 @@ if __name__ == '__main__':
 
     for workout_type, data in packages:
         training = read_package(workout_type, data)
-        main(training)
+        if training is None:
+            print('Неожиданный тип тренировки')
+        else:
+            main(training)
