@@ -120,15 +120,15 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-    type_train = {
+    type_traing = {
         'SWM': Swimming,
         'RUN': Running,
         'WLK': SportsWalking
         }
 
-    if type_train.get(workout_type) is None:
+    if type_traing.get(workout_type) is None:
         print('Неожиданный тип тренировки')
-    return type_train.get(workout_type)(*data)
+    return type_traing.get(workout_type)(*data)
 
 
 def main(training: Training) -> None:
