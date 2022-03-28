@@ -20,8 +20,7 @@ class InfoMessage:
             f'Длительность: {self.duration:.3f} ч.; '
             f'Дистанция: {self.distance:.3f} км; '
             f'Ср. скорость: {self.speed:.3f} км/ч; '
-            f'Потрачено ккал: {self.calories:.3f}.'
-            )
+            f'Потрачено ккал: {self.calories:.3f}.')
 
 
 class Training:
@@ -57,8 +56,7 @@ class Training:
             self.duration,
             self.get_distance(),
             self.get_mean_speed(),
-            self.get_spent_calories()
-            )
+            self.get_spent_calories())
 
 
 class Running(Training):
@@ -67,8 +65,8 @@ class Running(Training):
     RUN_CAL_2 = 20
 
     def get_spent_calories(self) -> float:
-        return ((self.RUN_CAL_1*self.get_mean_speed()-self.RUN_CAL_2)
-                * self.weight/self.M_IN_KM*(self.duration*self.MIN))
+        return ((self.RUN_CAL_1 * self.get_mean_speed() - self.RUN_CAL_2)
+                * self.weight/self.M_IN_KM * (self.duration * self.MIN))
 
 
 class SportsWalking(Training):
@@ -87,10 +85,10 @@ class SportsWalking(Training):
         self.height = height
 
     def get_spent_calories(self) -> float:
-        return (((self.WALK_CAL_1*self.weight)
-                + (self.get_mean_speed()**self.EXPONENT//self.height
-                * self.WALK_CAL_2*self.weight))
-                * (self.duration*self.MIN))
+        return (((self.WALK_CAL_1 * self.weight)
+                + (self.get_mean_speed() ** self.EXPONENT//self.height
+                * self.WALK_CAL_2 * self.weight))
+                * (self.duration * self.MIN))
 
 
 class Swimming(Training):
@@ -111,10 +109,11 @@ class Swimming(Training):
         self.count_pool = count_pool
 
     def get_mean_speed(self) -> float:
-        return self.length_pool*self.count_pool/super().M_IN_KM/self.duration
+        return (self.length_pool * self.count_pool
+                / super().M_IN_KM / self.duration)
 
     def get_spent_calories(self) -> float:
-        return ((self.get_mean_speed()+self.SWIM_CAL_1)
+        return ((self.get_mean_speed() + self.SWIM_CAL_1)
                 * self.SWIM_CAL_2 * self.weight)
 
 
@@ -123,8 +122,7 @@ def read_package(workout_type: str, data: list) -> Training:
     type_traing = {
         'SWM': Swimming,
         'RUN': Running,
-        'WLK': SportsWalking
-        }
+        'WLK': SportsWalking}
 
     if type_traing.get(workout_type) is None:
         print('Неожиданный тип тренировки')
@@ -140,8 +138,7 @@ if __name__ == '__main__':
     packages = [
         ('SWM', [720, 1, 80, 25, 40]),
         ('RUN', [15000, 1, 75]),
-        ('WLK', [9000, 1, 75, 180]),
-        ]
+        ('WLK', [9000, 1, 75, 180])]
 
     for workout_type, data in packages:
         main(read_package(workout_type, data))
