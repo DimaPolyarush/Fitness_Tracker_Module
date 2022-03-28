@@ -126,11 +126,9 @@ def read_package(workout_type: str, data: list) -> Training:
         'WLK': SportsWalking
         }
 
-    for i in type_train:
-        if i in type_train:
-            return type_train[workout_type](*data)
-        else:
-            print('Неожиданный тип тренировки')
+    if type_train.get(workout_type) is None:
+        print('Неожиданный тип тренировки')
+    return type_train.get(workout_type)(*data)
 
 
 def main(training: Training) -> None:
